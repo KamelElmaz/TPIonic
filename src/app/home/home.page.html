@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Demo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+<!--HTML STANDARD-->
+    <!--<ul>
+      <li *ngFor="let student of students"> {{student.name}} </li>
+    </ul>-->
+
+<!--Composant ion-list-->
+    <div> {{message}} </div>
+
+      <ion-chip color="secondary" (click)="pop()">
+          <ion-label>Test Pop-Over</ion-label>
+      </ion-chip>
+
+    <ion-list>
+      <ion-item *ngFor="let student of students; let i = index">
+        <ion-label> {{student.name}} </ion-label>
+        <ion-badge [color]="student.grade < 10 ? 'danger' : 'success'"> {{student.grade}} </ion-badge>
+        <ion-button (click)="onClick(i)">Infos</ion-button>
+        <ion-avatar slot="start">
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"/>
+        </ion-avatar>
+        <ion-icon name="mail-outline"></ion-icon>
+          <ion-checkbox (ionChange)="onChange(i, $event)" [checked]="student.isProjectDone"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
