@@ -1,14 +1,8 @@
 import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import {TestComponent} from '../components/test/test.component';
-
-interface Student {
-  id?: number;
-  name: string;
-  grade: number;
-  comment: string;
-  isProjectDone: boolean;
-}
+import {Student} from '../Student';
+import {StudentService} from '../student.service';
 
 @Component({
   selector: 'app-home',
@@ -17,14 +11,18 @@ interface Student {
 })
 export class HomePage {
   // students: string[] = ['Samuel', 'Christine', 'Quentin'];
-  students: Student[] = [
+  /*students: Student[] = [
     {name: 'Samuel', grade: 12, comment: 'Sérieux', isProjectDone: false},
     {name: 'Christine', grade: 8, comment: 'Travailleuse', isProjectDone: true},
     {name: 'Quentin', grade: 18, comment: 'Rien à ajouter', isProjectDone: false}
-  ];
+  ];*/
+  students: Student[] | null = null;
   message = '';
 
-  constructor(private popoverCtrl: PopoverController) {}
+  constructor(private popoverCtrl: PopoverController,
+              private studentService: StudentService) {
+    this.studentService.findAll().subscribe(students => this.students = students);
+  }
 
   onClick(index: number) {
     this.message = this.students[index].comment;

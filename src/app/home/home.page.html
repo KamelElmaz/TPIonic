@@ -20,8 +20,8 @@
           <ion-label>Test Pop-Over</ion-label>
       </ion-chip>
 
-    <ion-list>
-      <ion-item *ngFor="let student of students; let i = index">
+    <ion-list *ngIf="students">
+      <ion-item [routerLink]="'/student/' + student.id" *ngFor="let student of students; let i = index">
         <ion-label> {{student.name}} </ion-label>
         <ion-badge [color]="student.grade < 10 ? 'danger' : 'success'"> {{student.grade}} </ion-badge>
         <ion-button (click)="onClick(i)">Infos</ion-button>

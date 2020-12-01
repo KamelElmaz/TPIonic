@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Détails de l'étudiant</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button>back</ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="student">
+    <ion-card-header>
+      <ion-card-subtitle>étudiant n°{{student.id}}</ion-card-subtitle>
+      <ion-card-title>{{student.name}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Note : <strong>{{student.grade}}</strong></p>
+      <p>Observation: {{student.comment}}</p>
+      <p>Etat du projet: {{student.isProjectDone ? 'terminé' : 'en cours' }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="!student"><strong>Aucun étudiant correspondant au critère...</strong></div>
+</ion-content>
